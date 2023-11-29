@@ -15,6 +15,7 @@ public:
 	string GetName();
 	int GetPrice();
 	int GetWeight();
+
 	void Print();
 
 private:
@@ -23,12 +24,14 @@ private:
 	int weight = 0;            // вес
 };
 
-class Buy                      // производный для Product, базовый для Check
+class Buy : public Product                      // производный для Product, базовый для Check
 {
 
 public:
 
 	Buy();
+	Buy(int);
+	Buy(string, int, int, int);
 	~Buy();
 	void SetPiece(int);
 	void SetTotal_price(int);
@@ -36,6 +39,8 @@ public:
 	int GetPiece();
 	int GetTotal_Price();
 	int GetTotal_Weight();
+
+	void Print();
 
 private:
 	int piece = 0;              // колличество в штуках
@@ -61,8 +66,8 @@ int main()
 {
 	setlocale(LC_ALL, "RU");
 
-	Product pelmen("Пельмени", 10, 1);
-	pelmen.Print();
+	Buy aaa("ddddd", 5, 3, 10);
+	aaa.Print();
 
 
 
@@ -75,8 +80,8 @@ int main()
 Product::Product()
 {
 	name = " ";
-	price = 1;
-	weight = 1;
+	price = 0;
+	weight = 0;
 }
 
 Product::Product(string name, int price, int weight)
@@ -130,9 +135,39 @@ int Product::GetWeight()
 
 Buy::Buy()
 {
+	piece = 0;
+	total_price = 0;
+	total_weight = 0;
 }
+
+Buy::Buy(int piece)
+{
+	this->piece = piece;
+	int t_price = GetPrice();
+	int t_weight = GetWeight();
+	total_price = piece * t_price;
+	total_weight = piece * t_weight;
+}
+
+Buy::Buy(string name, int price, int weight, int piece) : Product(name, price, weight)
+{
+	this->piece = piece;
+	int t_price = GetPrice();
+	int t_weight = GetWeight();
+	total_price = piece * t_price;
+	total_weight = piece * t_weight;
+}
+
 Buy::~Buy()
 {
+}
+
+void Buy::Print()
+{
+	cout << endl;
+	cout << setw(15) << "Товара куплено:  " << piece << endl;
+	cout << setw(15) << "На сумму:  " << total_price << " руб." << endl;
+	cout << setw(15) << "Общий вес:  " << total_weight << " кг." << endl;
 }
 
 //---------------------------------------------- Buy::Get::Set
