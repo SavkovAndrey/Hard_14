@@ -6,7 +6,7 @@ class Product                  // базовый для всех класс
 {
 public:
 	Product();
-	Product(string, int, int);
+	Product(string, int, int);         // в данный конструктор передадутся парамерты ( из за перегрузки)
 	~Product();
 	
 	void SetName(string);

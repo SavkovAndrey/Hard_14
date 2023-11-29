@@ -12,8 +12,8 @@ Product::Product()
 	weight = 0;
 }
 
-Product::Product(string name, int price, int weight)
-{
+Product::Product(string name, int price, int weight)  // ловим параметры Check -> Buy -> Product
+{                                                     // устанавливаем (это параметры для ОБЪЕКТА Check!)
 	this->name = name;
 	this->price = price;
 	this->weight = weight;
