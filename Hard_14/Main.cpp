@@ -7,6 +7,7 @@ class Product                  // базовый для всех класс
 {
 public:
 	Product();
+	Product(string, int, int);
 	~Product();
 	void SetName(string);
 	void SetPrice(int);
@@ -14,6 +15,7 @@ public:
 	string GetName();
 	int GetPrice();
 	int GetWeight();
+	void Print();
 
 private:
 	string name;               // название
@@ -23,7 +25,9 @@ private:
 
 class Buy                      // производный для Product, базовый для Check
 {
+
 public:
+
 	Buy();
 	~Buy();
 	void SetPiece(int);
@@ -44,6 +48,7 @@ class Check                     // Выводит инфу о товаре и покупке (производный 
 public:
 	Check();
 	~Check();
+	void Print();
 
 private:
 };
@@ -56,7 +61,8 @@ int main()
 {
 	setlocale(LC_ALL, "RU");
 
-
+	Product pelmen("Пельмени", 10, 1);
+	pelmen.Print();
 
 
 
@@ -68,9 +74,30 @@ int main()
 
 Product::Product()
 {
+	name = " ";
+	price = 1;
+	weight = 1;
 }
+
+Product::Product(string name, int price, int weight)
+{
+	this->name = name;
+	this->price = price;
+	this->weight = weight;
+}
+
 Product::~Product()
 {
+}
+
+//------------------------------------------- Product Metod
+
+void Product::Print()
+{
+	cout << endl;
+	cout << setw(12) << "Название:  "  << name << endl;
+	cout << setw(12) << "Цена:  "      << price << " руб." << endl;
+	cout << setw(12) << "Вес:  "       << weight << " кг." << endl;
 }
  
 //--------------------------------------------Product::Get::Set
@@ -78,27 +105,22 @@ void Product::SetName(string name)
 {
 	this->name = name;
 }
-
 void Product::SetPrice(int price)
 {
 	this->price = price;
 }
-
 void Product::SetWeight(int weight)
 {
 	this->weight = weight;
 }
-
 string Product::GetName()
 {
 	return name;
 }
-
 int Product::GetPrice()
 {
 	return price;
 }
-
 int Product::GetWeight()
 {
 	return weight;
@@ -151,4 +173,9 @@ Check::Check()
 }
 Check::~Check()
 {
+}
+
+void Check::Print()
+{
+
 }
