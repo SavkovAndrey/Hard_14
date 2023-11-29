@@ -1,8 +1,9 @@
 #include <iostream>
 #include <iomanip>
+#include "Product.h"
 
 using namespace std;
-
+/*
 class Product                  // базовый для всех класс
 {
 public:
@@ -23,7 +24,7 @@ private:
 	int price = 0;             // цена
 	int weight = 0;            // вес
 };
-
+*/
 class Buy : public Product                      // производный для Product, базовый для Check
 {
 
@@ -48,10 +49,11 @@ private:
 	int total_weight = 0;       // общий вес
 };
 
-class Check                     // Выводит инфу о товаре и покупке (производный от Bay)
+class Check : public Buy                    // Выводит инфу о товаре и покупке (производный от Bay)
 {
 public:
 	Check();
+	Check(string, int, int, int);
 	~Check();
 	void Print();
 
@@ -66,8 +68,8 @@ int main()
 {
 	setlocale(LC_ALL, "RU");
 
-	Buy aaa("ddddd", 5, 3, 10);
-	aaa.Print();
+	Check first("пельмени", 10, 5, 100);
+	first.Print();
 
 
 
@@ -76,7 +78,7 @@ int main()
 }
 
 //-------------------------------------------- Product
-
+/*
 Product::Product()
 {
 	name = " ";
@@ -130,7 +132,7 @@ int Product::GetWeight()
 {
 	return weight;
 }
-
+*/
 //---------------------------------------------- Buy
 
 Buy::Buy()
@@ -206,11 +208,17 @@ int Buy::GetTotal_Weight()
 Check::Check()
 {
 }
+Check::Check(string name, int price, int weight, int piece) : Buy(name, price, weight, piece)
+{
+
+}
+
 Check::~Check()
 {
 }
 
 void Check::Print()
 {
-
+	Product::Print();
+	Buy::Print();
 }
